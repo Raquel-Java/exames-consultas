@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
+import br.com.exames.entity.Exame;
 import br.com.exames.infrastructure.config.FileStorageProperties;
 import br.com.exames.infrastructure.swagger.ExameRecursoDoc;
 import br.com.exames.service.ExameService;
@@ -47,7 +49,8 @@ public class ExamesController implements ExameRecursoDoc {
 	@PostMapping(value = "upload", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity uploadFile(
 			@ApiParam(value = "File to be uploaded", required = true) @RequestPart("file") MultipartFile file,
-			@RequestParam(required = false, defaultValue = "01/01/1999", name = "Data Exame") @DateTimeFormat(pattern = "yyyy-MM-dd") String dataRealizacao,
+			@RequestParam(required = false, defaultValue = "01/01/1999", name = "Data Exame") 
+			@DateTimeFormat(pattern = "yyyy-MM-dd") String dataRealizacao,
 			@RequestParam(required = false, defaultValue = "", name = "Usuario") String nmUsuario,
 			@RequestParam(required = true, defaultValue = "", name = "C.P.F") String cpfPaciente,
 			@RequestParam(required = false, defaultValue = "", name = "CRM") String crmMedico,
@@ -73,19 +76,14 @@ public class ExamesController implements ExameRecursoDoc {
 			String contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
 			if (contentType == null) {
 				contentType = "application/octet-stream";
-				
 				return ResponseEntity.noContent().build();
 			}else {
-				
 				return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType))
 						.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
 						.body(resource);
-			
 			}
-			
-			
 		} catch (MalformedURLException ex) {
-			return ResponseEntity.badRequest().body(null);
+			return ResponseEntity.badRequest().build();
 		}
 	}
 
@@ -94,14 +92,19 @@ public class ExamesController implements ExameRecursoDoc {
 		List<String> fileNames = Files.list(fileStorageLocation).map(Path::getFileName).map(Path::toString)
 				.collect(Collectors.toList());
 		if (fileNames == null) {
-			
 			return ResponseEntity.noContent().build();
 		}else {
-			
 			return ResponseEntity.ok().header("Sucesso na requisição").body(fileNames);
-		
 		}
-
-		
+	}
+	
+	@GetMapping("/exames")
+	public ResponseEntity listExamesPaciente(@RequestParam(required = true, 
+			defaultValue = "", name = "C.P.F") String cpf) throws IOException {
+		try {
+			return ResponseEntity.ok().header("Sucesso na requisição").body(servico.listExame(cpf));
+		} catch (Exception e) {
+			return ResponseEntity.noContent().build();
+		}
 	}
 }
