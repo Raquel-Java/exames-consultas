@@ -1,0 +1,37 @@
+#Configuração de datasource
+spring:
+  datasource:
+    username: ${BD_USER}
+    url: jdbc:mysql://${BD_NOME}:${BD_PORTA}/{BD_NOME}
+    password: ${BD_SENHA}
+  jpa:
+    properties:
+      hibernate:
+        format-sql: 'true'
+    show-sql: 'true'
+
+#Configuração de log
+logging:
+  level:
+    br:
+      com:
+        sevenpay:  
+          infrastructure:
+            route: DEBUG
+    org:
+      hibernate:
+        engine:
+          jdbc: OFF
+        SQL: OFF
+        jpa: OFF
+        event: OFF
+        type:
+          descriptor:
+            sql:
+              BasicBinder: OFF
+      springframework:
+        web: 
+          HttpLogging: OFF
+          nodeValue: OFF  
+          client:
+            RestTemplate: OFF

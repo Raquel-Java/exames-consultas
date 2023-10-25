@@ -1,0 +1,27 @@
+{"properties": [
+  {
+    "name": "api.log.atualiza-log",
+    "type": "java.lang.String",
+    "description": "A description for 'api.log.atualiza-log'"
+  },
+  {
+    "name": "api.log.geraLog",
+    "type": "java.lang.String",
+    "description": "A description for 'api.log.geraLog'"
+  },
+  {
+    "name": "api.log.geraLog",
+    "type": "java.lang.String",
+    "description": "A description for 'api.log.geraLog'"
+  },
+  {
+    "name": "api.log.gravaDetalhe",
+    "type": "java.lang.String",
+    "description": "A description for 'api.log.gravaDetalhe'"
+  },
+  {
+    "name": "api.log.grava-detalhe",
+    "type": "java.lang.String",
+    "description": "A description for 'api.log.grava-detalhe'"
+  }
+]}

@@ -1,0 +1,47 @@
+#Configuração de datasource
+spring:
+  datasource:
+    username: admin
+    url: jdbc:mysql://microservices.cnwhmskwcply.us-east-2.rds.amazonaws.com:3306/consultorio
+    password: trabalho123
+  jpa:
+    properties:
+      hibernate:
+        format-sql: 'true'
+    show_sql: 'false'
+      
+
+# Timeout feign
+feign:
+  client:
+    config:
+      provider-get:
+        connectTimeout: 120000
+        readTimeout: 120000
+
+#Configuração de log
+logging:
+  level:
+    br:
+      com:
+        sevenpay: DEBUG
+    org:
+      hibernate:
+        engine:
+          jdbc: OFF
+        SQL: OFF
+        jpa: OFF
+        event: OFF
+        type:
+          descriptor:
+            sql:
+              BasicBinder: OFF
+      springframework:
+        security:
+           web:
+            DefaultSecurityFilterChain: OFF
+        web: 
+          HttpLogging: OFF
+          nodeValue: OFF  
+          client:
+            RestTemplate: OFF

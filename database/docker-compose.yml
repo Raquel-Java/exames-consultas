@@ -1,0 +1,17 @@
+# Docker stack using docker-compose 
+version: '3.1'
+services:
+  database:
+    container_name: postgres_db_empresa_puc
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: db_empresa
+      POSTGRES_USER: web_api
+      POSTGRES_PASSWORD: post#2025
+      POSTGRES_PORT: 5432
+    ports:
+      - 9002:5432
+    volumes: 
+      - ./data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql

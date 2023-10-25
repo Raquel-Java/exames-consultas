@@ -1,0 +1,43 @@
+file:
+  upload-dir: 'uploads'
+  
+app:
+  contextPath: 'api-exames-consultas'
+  version: '1.0.0-SNAPSHOT'
+  description: 'Serviço para gerenciamento de exames do paciente'
+  organization: 'Puc Minas'
+  name: 'api-exames-consultas'
+
+api:
+  zoop:
+    baseUrl: https://api.zoop.ws
+
+spring:
+  jackson:
+    time-zone: America/Sao_Paulo
+    serialization:
+      write-dates-as-timestamps: 'false'
+    deserialization:
+      fail-on-unknown-properties: 'true'
+    date-format: yyyy-MM-dd HH:mm:ss
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+    format:
+      time: HH:mm:ss
+      date: yyyy-MM-dd
+      date-time: yyyy-MM-dd HH:mm:ss
+  profiles:
+    active: dev
+  output:
+    ansi:
+      enabled: always
+    
+#Dados do servidor
+server:
+  servlet:
+    context-path: /api-exames-consultas
+  port: '8087'
+
+
+

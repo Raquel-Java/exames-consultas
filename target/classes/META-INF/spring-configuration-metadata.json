@@ -1,0 +1,47 @@
+{
+  "groups": [
+    {
+      "name": "app",
+      "type": "br.com.exames.infrastructure.swagger.SwaggerConfiguracao",
+      "sourceType": "br.com.exames.infrastructure.swagger.SwaggerConfiguracao"
+    },
+    {
+      "name": "file",
+      "type": "br.com.exames.infrastructure.config.FileStorageProperties",
+      "sourceType": "br.com.exames.infrastructure.config.FileStorageProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "app.context-path",
+      "type": "java.lang.String",
+      "sourceType": "br.com.exames.infrastructure.swagger.SwaggerConfiguracao"
+    },
+    {
+      "name": "app.description",
+      "type": "java.lang.String",
+      "sourceType": "br.com.exames.infrastructure.swagger.SwaggerConfiguracao"
+    },
+    {
+      "name": "app.name",
+      "type": "java.lang.String",
+      "sourceType": "br.com.exames.infrastructure.swagger.SwaggerConfiguracao"
+    },
+    {
+      "name": "app.organization",
+      "type": "java.lang.String",
+      "sourceType": "br.com.exames.infrastructure.swagger.SwaggerConfiguracao"
+    },
+    {
+      "name": "app.version",
+      "type": "java.lang.String",
+      "sourceType": "br.com.exames.infrastructure.swagger.SwaggerConfiguracao"
+    },
+    {
+      "name": "file.upload-dir",
+      "type": "java.lang.String",
+      "sourceType": "br.com.exames.infrastructure.config.FileStorageProperties"
+    }
+  ],
+  "hints": []
+}
