@@ -98,7 +98,7 @@ public class ExamesController implements ExameRecursoDoc {
 		}
 	}
 	
-	@GetMapping("/exames")
+	@GetMapping("/prontuario")
 	public ResponseEntity listExamesPaciente(@RequestParam(required = true, 
 			defaultValue = "", name = "C.P.F") String cpf) throws IOException {
 		try {
